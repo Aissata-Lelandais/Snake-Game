@@ -29,9 +29,8 @@ let yVelocity = 0;
 
 let score = 0;
 
-const gulpSound = new Audio("gulp.mp3");
 
-//game loop
+//boucle de jeu
 function drawGame() {
   xVelocity = inputsXVelocity;
   yVelocity = inputsYVelocity;
@@ -67,7 +66,7 @@ function isPerdu() {
     return false;
   }
 
-  //walls
+  //murs
   if (headX < 0) {
     perdu = true;
   } else if (headX === tileCount) {
@@ -95,10 +94,10 @@ function isPerdu() {
       ctx.font = "50px Verdana";
 
       var gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-      gradient.addColorStop("0", " magenta");
-      gradient.addColorStop("0.5", "blue");
-      gradient.addColorStop("1.0", "red");
-      // Fill with gradient
+      gradient.addColorStop("0", " orange");
+      gradient.addColorStop("0.5", "black");
+      gradient.addColorStop("1.0", "yellow");
+      // Remplir de dégradé
       ctx.fillStyle = gradient;
 
       ctx.fillText("Perdu!", canvas.width / 6.5, canvas.height / 2);
@@ -128,9 +127,9 @@ function drawSnake() {
     ctx.fillRect(part.x * tileCount, part.y * tileCount, tileSize, tileSize);
   }
 
-  snakeParts.push(new SnakePart(headX, headY)); //put an item at the end of the list next to the head
+  snakeParts.push(new SnakePart(headX, headY)); //mettre un élément à la fin de la liste à côté de la tête
   while (snakeParts.length > tailLength) {
-    snakeParts.shift(); // remove the furthet item from the snake parts if have more than our tail size.
+    snakeParts.shift(); // retirez l'article le plus éloigné des parties du serpent si vous avez plus que notre taille de queue.
   }
 
   ctx.fillStyle = "orange";
@@ -147,15 +146,7 @@ function drawApple() {
   ctx.fillRect(appleX * tileCount, appleY * tileCount, tileSize, tileSize);
 }
 
-function checkAppleCollision() {
-  if (appleX === headX && appleY == headY) {
-    appleX = Math.floor(Math.random() * tileCount);
-    appleY = Math.floor(Math.random() * tileCount);
-    tailLength++;
-    score++;
-    gulpSound.play();
-  }
-}
+
 
 document.body.addEventListener("keydown", keyDown);
 

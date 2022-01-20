@@ -29,7 +29,6 @@ let yVelocity = 0;
 
 let score = 0;
 
-
 //boucle de jeu
 function drawGame() {
   xVelocity = inputsXVelocity;
@@ -119,7 +118,7 @@ function clearScreen() {
   ctx.fillStyle = "green";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
-
+//serpent
 function Snake() {
   ctx.fillStyle = "yellow";
   for (let i = 0; i < snakeParts.length; i++) {
@@ -127,29 +126,27 @@ function Snake() {
     ctx.fillRect(part.x * tileCount, part.y * tileCount, tileSize, tileSize);
   }
 
-  snakeParts.push(new SnakePart(headX, headY)); //mettre un élément à la fin de la liste à côté de la tête
+  snakeParts.push(new SnakePart(headX, headY)); //mettre une à la fin de la liste à côté de la tête
   while (snakeParts.length > tailLength) {
-    snakeParts.shift(); // retirez l'article le plus éloigné des parties du serpent si vous avez plus que notre taille de queue.
+    snakeParts.shift(); // retirez la pomme du serpent si il n'y a plus que la taille de queue.
   }
 
   ctx.fillStyle = "orange";
   ctx.fillRect(headX * tileCount, headY * tileCount, tileSize, tileSize);
 }
-
+// changement de la position du serpent
 function changeSnakePosition() {
   headX = headX + xVelocity;
   headY = headY + yVelocity;
 }
-
+//
 function Apple() {
   ctx.fillStyle = "red";
   ctx.fillRect(appleX * tileCount, appleY * tileCount, tileSize, tileSize);
 }
 
-
-
 document.body.addEventListener("keydown", keyDown);
-
+// touche evenement.
 function keyDown(event) {
   //en haut
   if (event.keyCode == 38 || event.keyCode == 87) {

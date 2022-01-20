@@ -44,8 +44,8 @@ function drawGame() {
   clearScreen();
 
   checkAppleCollision();
-  drawApple();
-  drawSnake();
+  Apple();
+  Snake();
 
   drawScore();
 
@@ -120,7 +120,7 @@ function clearScreen() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-function drawSnake() {
+function Snake() {
   ctx.fillStyle = "yellow";
   for (let i = 0; i < snakeParts.length; i++) {
     let part = snakeParts[i];
@@ -141,7 +141,7 @@ function changeSnakePosition() {
   headY = headY + yVelocity;
 }
 
-function drawApple() {
+function Apple() {
   ctx.fillStyle = "red";
   ctx.fillRect(appleX * tileCount, appleY * tileCount, tileSize, tileSize);
 }
